@@ -15,3 +15,6 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Don't include bundled gems installed in the project tree instead of globally
+vendor/bundle
