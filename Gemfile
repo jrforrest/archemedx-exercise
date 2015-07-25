@@ -41,6 +41,12 @@ group :development, :test do
   # Use rspec instead of minitest for testing
   gem 'rspec-rails', '~> 3.0'
 
+  # Creates DB objects/fixtures for integration tests
+  gem 'factory_girl_rails'
+
+  # Creates mock data for factories and such
+  gem 'faker'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
