@@ -1,12 +1,15 @@
+<% if not toplevel %>
+  <a href='javascript:void(0)' class="reply show-comment-form">Reply</a>
+  <%= render 'new_comment', parent: parent, show: false %>
+<% end %>
+
 <div class="comments">
-  <% parent.comments.each do |comment| %>
+  <% parent.comments.select(&:persisted?).each do |comment| %>
     <div class="comment">
       <div class="body">
         <%= comment.body %>
       </div>
-      <a class="reply" href="#">Reply</a>
-
-      <%= render 'comments_list', parent: comment %>
+      <%= render 'comments_list', parent: comment, toplevel: false %>
     </div>
   <% end %>
 </div>
