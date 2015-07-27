@@ -4,5 +4,5 @@ class Comment < ActiveRecord::Base
 
   validates_presence_of :body
 
-  has_many :comments, foreign_key: :parent_id
+  has_many :comments, as: :parent
 end
