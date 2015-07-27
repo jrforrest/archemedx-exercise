@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+if Post.count < 1
+  post = FactoryGirl.create(:post)
+  post.comments = FactoryGirl.create_list(:comment, 5)
+  post.comments.each do |comment|
+    comment.comments = FactoryGirl.create_list(:comment, 3)
+  end
+end
