@@ -7,8 +7,15 @@
   <% parent.comments.select(&:persisted?).each do |comment| %>
     <div class="comment">
       <div class="body">
-        <%= comment.body %>
+        <% if comment.soft_deleted? %>
+          [deleted]
+        <% else %>
+          <%= comment.body %>
+        <% end %>
       </div>
+      <% unless comment.soft_deleted? %>
+        <%= link_to 'Delete', comment_path(comment), method: :delete %>
+      <% end %>
       <%= render 'comments_list', parent: comment, toplevel: false %>
     </div>
   <% end %>

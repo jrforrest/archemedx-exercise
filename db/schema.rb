@@ -11,15 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726211124) do
+ActiveRecord::Schema.define(version: 20150727201742) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "parent_id"
     t.string   "parent_type"
     t.integer  "author_id"
     t.text     "body"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.boolean  "soft_deleted", default: false
   end
 
   create_table "posts", force: :cascade do |t|

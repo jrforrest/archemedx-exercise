@@ -5,6 +5,14 @@ class CommentsController < ApplicationController
     redirect_to :back
   end
 
+  # Soft-deletes a comment, rather than outright destroying it
+  def destroy
+    Comment.find(params[:id]).soft_delete
+    flash[:notice] = 'Comment deleted.  Do note that its still in our '\
+      'system, but other users can\'t read it'
+    redirect_to :back
+  end
+
   private
 
   def comment_params
