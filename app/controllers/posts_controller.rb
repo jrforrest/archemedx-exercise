@@ -1,16 +1,18 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   def index
     @posts = Post.all
   end
 
   def show
+    # This only includes for depth 1.  This could be greatly optimized by
+    # using a WITH RECURSIVE query.
+    @post = Post.includes(comments: :comments).find(params[:id])
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-
+    @post = current_user.posts.build(post_params) 
     if @post.save
       redirect_to @post
     end

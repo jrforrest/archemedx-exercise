@@ -1,0 +1,12 @@
+<div class="comments">
+  <% parent.comments.each do |comment| %>
+    <div class="comment">
+      <div class="body">
+        <%= comment.body %>
+      </div>
+      <a class="reply" href="#">Reply</a>
+
+      <%= render 'comments_list', parent: comment %>
+    </div>
+  <% end %>
+</div>
